@@ -51,6 +51,7 @@ if __name__ == "__main__":
     wpn_3=wpn_3.join(ncc2,['visitor_home_cbgs'],how = 'inner')
 
     pd_df=wpn_3.toPandas()
+    t = Transformer.from_crs(4326, 2263)
     pd_df['distance']=((t.transform(pd_df['latitude'],pd_df['longitude'])[0]-t.transform(pd_df['latitude2'],pd_df['longitude2'])[0])**2 + (t.transform(pd_df['latitude'],pd_df['longitude'])[1]-t.transform(pd_df['latitude2'],pd_df['longitude2'])[1])**2)**0.5/5280
     pd_df['time']=pd_df['year_start']+'-'+pd_df['month_start']
     value = pd_df.values.tolist()
